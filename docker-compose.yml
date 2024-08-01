@@ -4,3 +4,22 @@ services:
     container_name: nginx
     ports:
       - "80:80"
+    volumes:
+      - ./wordpress:/var/www/html
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wordpress
+    volumes:
+      - ./wordpress:/var/www/html
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./home/lera/data/wordpress
+      o: bind
+
+networks:
+  inception:
+    driver: bridge
