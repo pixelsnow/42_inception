@@ -1,8 +1,8 @@
 FROM alpine:3.19
 
-RUN apk update && \
-    apk upgrade && \
-    apk add --no-cache php82-fpm
+RUN adduser -S -D -H -h /var/cache/www-data -s /sbin/nologin -G www-data -g www-data www-data
+
+RUN apk add --no-cache php82-fpm
 
 COPY www.conf /etc/php82/php-fpm.d/.
 

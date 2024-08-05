@@ -1,3 +1,3 @@
 #!/bin/sh
 
-php-fpm82 -F;
+exec php-fpm82 -F;
