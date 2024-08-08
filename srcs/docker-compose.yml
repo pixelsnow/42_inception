@@ -2,6 +2,8 @@ services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
+    depends_on:
+      - wordpress
     ports:
       - "80:80"
     volumes:
@@ -12,6 +14,8 @@ services:
   wordpress:
     build: requirements/wordpress/.
     container_name: wordpress
+    depends_on:
+      - mariadb
     volumes:
       - ./web:/var/www/html
     networks:

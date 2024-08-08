@@ -9,7 +9,12 @@ datadir = /var/lib/mysql
 #
 # Allow server to accept connections on all interfaces.
 #
-bind-address=0.0.0.0
+bind-address=mariadb
 port=3306
-user=mysql
+user=root
+pid-file=/run/mysqld/mysqld.pid
+basedir=/usr
+tmpdir=/tmp
+
+# optional - logging
 log_error=/var/log/mysql/error.log
