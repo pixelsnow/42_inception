@@ -1,28 +1,28 @@
 services:
   nginx:
-    build: requirements/nginx/.
+    build: ./requirements/nginx
     container_name: nginx
     depends_on:
       - wordpress
     ports:
       - "80:80"
     volumes:
-      - ./web:/var/www/html
+      - wordpress:/var/www/html
     networks:
       - inception
     restart: unless-stopped
   wordpress:
-    build: requirements/wordpress/.
+    build: ./requirements/wordpress
     container_name: wordpress
     depends_on:
       - mariadb
     volumes:
-      - ./web:/var/www/html
+      - wordpress:/var/www/html
     networks:
       - inception
     restart: unless-stopped
   mariadb:
-    build: requirements/mariadb/.
+    build: ./requirements/mariadb
     container_name: mariadb
     volumes:
       - mariadb:/var/lib/mysql

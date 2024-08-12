@@ -12,6 +12,9 @@ datadir = /var/lib/mysql
 bind-address=mariadb
 port=3306
 user=root
+
+init-file=/etc/my.cnf.d/init.sql
+
 pid-file=/run/mysqld/mysqld.pid
 basedir=/usr
 tmpdir=/tmp
