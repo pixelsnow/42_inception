@@ -2,13 +2,10 @@
 # These groups are read by MariaDB server.
 # Use it for options that only the server (but not clients) should see
 
-
 # this is only for the mysqld standalone daemon
 [mysqld]
 datadir = /var/lib/mysql
-#
-# Allow server to accept connections on all interfaces.
-#
+
 bind-address=mariadb
 port=3306
 user=root

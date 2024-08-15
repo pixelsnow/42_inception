@@ -30,7 +30,7 @@ chmod -R 755 /var/www/html/
 
 cd /var/www/html
 
-if ! wp core is-installed --allow-root; then
+if ! wp core is-installed --allow-root 2>/dev/null; then
     # download wp
     wp core download --allow-root
 
@@ -38,13 +38,17 @@ if ! wp core is-installed --allow-root; then
     wp config create --dbname=wordpress --dbuser=wpuser --dbpass=password --dbhost=mariadb --allow-root
 
     # install wp
-    wp core install --url=localhost --title=inception --admin_user=admin --admin_password=admin --admin_email=admin@admin.com --allow-root
+    wp core install --url=localhost --title=inception --admin_user=vvagapov --admin_password=pass1234 --admin_email=admin@admin.com --allow-root
 
     # create user
-    wp user create username email --role=author --user_pass=password --allow-root
+    wp user create lera lera@example.com --role=author --user_pass=password --allow-root
 
     # install theme
-    wp theme install twentytwentytwo --activate --allow-root
+    wp theme activate twentytwentytwo --allow-root
+
+    # set site url and home
+    wp option update siteurl "https://vvagapov.42.fr" --allow-root --path=/var/www/html
+    wp option update home "https://vvagapov.42.fr" --allow-root --path=/var/www/html
 fi
 
 # Start PHP-FPM in the foreground
