@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:3.19@sha256:95c16745f100f44cf9a0939fd3f357905f845f8b6fa7d0cde0e88c9764060185
 
 # Install MariaDB server and client packages
 RUN apk add --no-cache mariadb mariadb-client
@@ -17,14 +17,10 @@ RUN touch /var/log/mysql/error.log
 RUN mkdir /run/mysqld
 
 # Copy the MariaDB server configuration file into the image
-COPY mariadb-server.cnf /etc/my.cnf.d/.
+COPY /config/mariadb-server.cnf /etc/my.cnf.d/.
 # Copy the SQL initialization file into the image
-COPY init.sql /etc/my.cnf.d/.
+COPY /script/init.sql /etc/my.cnf.d/.
 
 EXPOSE 3306
 
-# Copy the entrypoint script into the image and make it executable
-COPY entrypoint.sh /usr/local/bin/.
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["mysqld_safe"]

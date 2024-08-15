@@ -1,11 +1,13 @@
 # Use Alpine Linux 3.19 as the base image
-FROM alpine:3.19
+FROM alpine:3.19@sha256:95c16745f100f44cf9a0939fd3f357905f845f8b6fa7d0cde0e88c9764060185
 
-# Add a system user 'www-data' with
+# Create a system group 'www'
+RUN addgroup -S www
+# Add a system user 'www' with
 # no home directory (not needed because this is just to run services)
 # no shell (increases security),
-# and with the primary group also named 'www-data'
-RUN adduser -S -D -H -h /var/cache/www-data -s /sbin/nologin -G www-data -g www-data www-data
+# and with the primary group also named 'www'
+RUN adduser -S -D -H -h /var/cache/www -s /sbin/nologin -G www -g www www
 
 # Install PHP, PHP-FPM (FastCGI Process Manager), PHP extensions, curl, MariaDB client
 RUN apk add --no-cache \
@@ -18,10 +20,10 @@ RUN apk add --no-cache \
     mariadb-client
 
 # Copy the PHP-FPM configuration file into the image
-COPY www.conf /etc/php82/php-fpm.d/.
+COPY /config/www.conf /etc/php82/php-fpm.d/.
 
 # Copy the entrypoint script into the image and make it executable
-COPY ./tools/wp_entrypoint.sh /usr/local/bin/.
+COPY ./script/wp_entrypoint.sh /usr/local/bin/.
 RUN chmod +x /usr/local/bin/wp_entrypoint.sh
 
 # Download the WP-CLI (WordPress Command Line Interface) tool
