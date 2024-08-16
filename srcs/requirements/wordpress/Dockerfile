@@ -31,5 +31,7 @@ RUN chmod +x /usr/local/bin/wp_entrypoint.sh
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp && \
     chmod +x /usr/local/bin/wp
 
+EXPOSE 9000
+
 # Set the entrypoint script as the default command to run when the container starts
 ENTRYPOINT ["/usr/local/bin/wp_entrypoint.sh"]

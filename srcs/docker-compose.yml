@@ -5,7 +5,7 @@ services:
     depends_on:
       - wordpress
     ports:
-      - "80:80"
+      - "433:433"
     volumes:
       - wordpress:/var/www/html
     networks:

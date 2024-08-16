@@ -33,7 +33,7 @@ if ! wp core is-installed --allow-root 2>/dev/null; then
     wp config create --dbname=wordpress --dbuser=wpuser --dbpass=password --dbhost=mariadb --allow-root
 
     # install wp
-    wp core install --url=localhost --title=inception --admin_user=vvagapov --admin_password=pass1234 --admin_email=admin@admin.com --allow-root
+    wp core install --url=https://vvagapov.42.fr --title=inception --admin_user=vvagapov --admin_password=pass1234 --admin_email=admin@admin.com --allow-root
 
     # create user
     wp user create lera lera@example.com --role=author --user_pass=password --allow-root
