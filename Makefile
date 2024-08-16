@@ -4,8 +4,8 @@ re: fclean all
 
 # Creates data directories
 prepare:
-	mkdir -p srcs/home/${USER}/data/wordpress
-	mkdir -p srcs/home/${USER}/data/mariadb
+	mkdir -p /Users/${USER}/data/wordpress
+	mkdir -p /Users/${USER}/data/mariadb
 
 # Builds the Docker Compose project
 build: prepare
@@ -32,7 +32,7 @@ clean:
 
 # Removes data directories
 fclean: clean
-	rm -rf srcs/home/${USER}/data/wordpress
-	rm -rf srcs/home/${USER}/data/mariadb
+	rm -rf /Users/${USER}/data/wordpress
+	rm -rf /Users/${USER}/data/mariadb
 
 .PHONY: all build up re clean fclean prepare
