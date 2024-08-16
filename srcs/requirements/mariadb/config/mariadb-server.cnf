@@ -1,0 +1,20 @@
+#
+# These groups are read by MariaDB server.
+# Use it for options that only the server (but not clients) should see
+
+# this is only for the mysqld standalone daemon
+[mysqld]
+datadir = /var/lib/mysql
+
+bind-address=mariadb
+port=3306
+user=root
+
+init-file=/etc/my.cnf.d/init.sql
+
+pid-file=/run/mysqld/mysqld.pid
+basedir=/usr
+tmpdir=/tmp
+
+# optional - logging
+log_error=/var/log/mysql/error.log
